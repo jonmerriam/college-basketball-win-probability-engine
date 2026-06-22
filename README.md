@@ -38,8 +38,6 @@ Raw KenPom and Kaggle data files are not included in this repository. KenPom dat
 
 ## Run Locally
 
-## Run Locally
-
 Install dependencies:
 
 ```bash
