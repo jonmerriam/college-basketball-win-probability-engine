@@ -2,6 +2,10 @@
 
 This project is a college basketball matchup simulator that estimates win probabilities using historical NCAA results and KenPom four-factor team metrics.
 
+## App Preview
+
+![App Screenshot](assets/app_screenshot.png)
+
 ## Features
 
 - Simulates NCAA Division I college basketball games
