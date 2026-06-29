@@ -4,6 +4,8 @@ This project is a college basketball matchup simulator that estimates win probab
 
 ## App Preview
 
+Link: https://ncaamsimulator.streamlit.app/
+
 ![App Screenshot](assets/app_screenshot.png)
 
 ## Features
