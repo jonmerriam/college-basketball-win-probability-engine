@@ -20,6 +20,19 @@ categorical_features = bundle["categorical_features"]
 
 kenpom = pd.read_csv(KENPOM_PATH)
 
+def clean_dataframe_for_streamlit(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Prevents Streamlit / PyArrow display errors caused by mixed object columns.
+    """
+    cleaned = df.copy()
+
+    cleaned.columns = cleaned.columns.astype(str)
+
+    for column in cleaned.columns:
+        if cleaned[column].dtype == "object":
+            cleaned[column] = cleaned[column].astype(str)
+
+    return cleaned
 
 def build_matchup_row(team_a, team_b, location):
     a = kenpom[kenpom["Team"] == team_a].iloc[0]
@@ -83,7 +96,7 @@ st.set_page_config(
     layout="wide",
 )
 
-st.title("🏀 College Basketball Win Probability Engine")
+st.title("🏀 College Basketball Win Probability Engine (2024-25)")
 
 st.write(
     "Simulate a Division I college basketball matchup using KenPom four-factor "
@@ -193,9 +206,12 @@ else:
         }
     )
 
-    st.dataframe(comparison, use_container_width=True)
+    st.dataframe(
+    clean_dataframe_for_streamlit(comparison),
+    use_container_width=True
+)
 
     st.caption(
-        "Model trained on 2021–2024 NCAA regular-season results and evaluated "
+        "Created by Jonathan Merriam. Model trained on 2021–2024 NCAA regular-season results and evaluated "
         "on 2025 games. Current simulator uses 2025 KenPom four-factor profiles."
     )
